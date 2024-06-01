@@ -1,4 +1,4 @@
-def dfs(visited, graph, node):  #function for dfs 
+cpdef int dfs(visited, graph, node):  #function for dfs 
     if node not in visited:
         print (node)
         visited.add(node)

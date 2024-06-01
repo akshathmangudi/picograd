@@ -87,10 +87,15 @@ class _Layer(_Module):
 class MLP(_Module): 
     def __init__(self, nin, nouts): 
         pair = [nin] + nouts # We are creating a pair and we will iterate over them.
-        self.layers = [_Layer(pair[i], pair[i+1]) for i in range(len(nouts))]
-    
+        self.layers = [_Layer(pair[i], pair[i+1], nonlin=i!=len(nouts)-1) for i in range(len(nouts))]
+
     def __call__(self, x): 
         for layer in self.layers: 
             x = layer(x)
         return x
 
+    def params(self): 
+        return [p for layer in self.layers for p in layer.params()]
+
+    def __repr__(self): 
+        return f"MLP of [{', '.join(str(layer) for layer in self.layers)}]"
