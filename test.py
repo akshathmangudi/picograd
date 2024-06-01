@@ -9,4 +9,3 @@ a - b
 a * b
 b ** 2
 
-F.relu(a)
