@@ -3,7 +3,7 @@ import random
 from .tensor import Tensor
 
 
-class Functions: 
+class Functions(Tensor): 
 
     """
         This will contain the crux of our program. Mainly: 
@@ -54,12 +54,13 @@ class _Module:
 class _Neuron(_Module): 
     def __init__(self, nin, nonlin=True): 
         self.w = [Tensor(random.uniform(-1, 1)) for _ in range(nin)]
-        self.b = [Tensor(random.uniform(-1, 1) for _ in range(nin))]
+        self.b = Tensor(random.uniform(-1, 1))
         self.nonlin = nonlin
     
     def __call__(self, x): 
-        out = sum((wi*xi for wi, xi in zip(self.w, x)), self.b)
-        return out.relu() if self.nonlin else out
+        assert isinstance(x, list) and all(isinstance(xi, Tensor) for xi in x), "Input should be a list of Tensor objects"
+        out = sum((wi * xi for wi, xi in zip(self.w, x)), self.b)
+        return Functions.relu(out) if self.nonlin else out
 
     def params(self): 
         return self.w + [self.b]
@@ -89,7 +90,8 @@ class MLP(_Module):
         pair = [nin] + nouts # We are creating a pair and we will iterate over them.
         self.layers = [_Layer(pair[i], pair[i+1], nonlin=i!=len(nouts)-1) for i in range(len(nouts))]
 
-    def __call__(self, x): 
+    def __call__(self, x):
+        assert isinstance(x, Tensor), "Input should be a Tensor object"
         for layer in self.layers: 
             x = layer(x)
         return x

@@ -1,4 +1,4 @@
-import numpy 
+import numpy
 
 class Tensor:
     """
@@ -51,7 +51,7 @@ class Tensor:
         out._backward = _backward
 
         return out
-    
+
     def backward(self): 
         # This is the topological order of all the children in the graph. 
         elem = []
@@ -73,22 +73,22 @@ class Tensor:
     def __neg__(self): 
         return self * -1
 
-    def __badd__(self, other): 
+    def __radd__(self, other): 
         return self + other
 
     def __sub__(self, other): 
         return self + (-other)
 
-    def __bisub__(self, other): 
+    def __rsub__(self, other): 
         return other + (-self)
 
-    def __bimul__(self, other): 
+    def __rmul__(self, other): 
         return self * other
     
     def __div__(self, other): 
         return self * other**-1
 
-    def __bidiv(self, other): 
+    def __rdiv(self, other): 
         return other * self**-1
 
     def __repr__(self): 
