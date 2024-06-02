@@ -3,7 +3,7 @@ import random
 from .tensor import Tensor
 
 
-class Functions(Tensor): 
+class Functions: 
 
     """
         This will contain the crux of our program. Mainly: 
@@ -13,7 +13,7 @@ class Functions(Tensor):
 
     @staticmethod
     def relu(x): 
-        assert isinstance(x, Tensor), "Input should be a Tensor object" 
+        assert isinstance(x, Tensor), "Input should be a Tensor object"
         out = Tensor(numpy.maximum(0, x.data), (x,), 'ReLU')
 
         def _backward(): 
@@ -58,7 +58,6 @@ class _Neuron(_Module):
         self.nonlin = nonlin
     
     def __call__(self, x): 
-        assert isinstance(x, list) and all(isinstance(xi, Tensor) for xi in x), "Input should be a list of Tensor objects"
         out = sum((wi * xi for wi, xi in zip(self.w, x)), self.b)
         return Functions.relu(out) if self.nonlin else out
 
@@ -91,7 +90,6 @@ class MLP(_Module):
         self.layers = [_Layer(pair[i], pair[i+1], nonlin=i!=len(nouts)-1) for i in range(len(nouts))]
 
     def __call__(self, x):
-        assert isinstance(x, Tensor), "Input should be a Tensor object"
         for layer in self.layers: 
             x = layer(x)
         return x

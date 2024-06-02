@@ -36,13 +36,43 @@ def draw_dot(root, format='svg', rankdir='LR'):
     
     return dot
 
+"""
+n = nn._Neuron(4)
+x = [Tensor(2.0), Tensor(3.0), Tensor(1.0), Tensor(2.3)]
+y = n(x)
+y.backward()
 
-N = nn.MLP(3, [4, 4, 1])
-inp = Tensor(numpy.random.randint(-10, 10, (3,)))
-oup = [1.0, 0.5, -2.4, 1]
-yp = [N(x) for x in inp]
+dot = draw_dot(y)
+dot.render('neuron_visualization')
 
-loss = sum((yout - ygt)**2 for ygt, yout in zip(oup, yp))
-loss.backward()
-res = draw_dot(loss)
-res.render('gout')
+model = nn.MLP(3, [2, 1])
+inp = [Tensor(2.0), Tensor(3.4)]
+y = model(inp)
+y.backward()
+
+dot = draw_dot(y)
+dot.render("mlp1_visualization")
+"""
+
+
+"""
+    Now, we will visualize the MLP for the following model: 
+
+    1. 2 neurosn in the input layer
+    2. 4 neurons in the first two hidden layers 
+    3. 2 neurons in the last hidden layer
+    4. 1 output layer and a relu at the end
+"""
+
+model = nn.MLP(2, [4, 4, 2, 1])
+
+x1, x2 = numpy.random.uniform(0, 5, 2)
+
+x = [Tensor(x1), Tensor(x2)]
+Y = model(x)
+
+Y.backward()
+
+dot = draw_dot(Y)
+dot.render('binary_class')
+
