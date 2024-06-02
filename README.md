@@ -7,6 +7,8 @@ All other visualizations are inside pics/ and bigraphs/
 
 Currently working on optimizng the code using Cython to make it faster. 
 
+UPDATE: can't get it to work, will work on it on a future repository or when i get more experience.
+
 if you think it's similar to PyTorch, it is. 
 
 if there are any bugs, please write an email to akshathmangudi@gmail.com
