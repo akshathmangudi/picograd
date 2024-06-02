@@ -1,6 +1,6 @@
 # picograd
 Taken inspiration from Karpathy's "micrograd" ;) 
-<img src="/picograd/binary_class.svg" alt="lines and boxes">
+<img src="binary_class.svg" alt="lines and boxes">
 
 A very simple autograd enigne for learning purposes only. The code for binary classification is insdie test/graph.py
 All other visualizations are inside pics/ and bigraphs/ 
