@@ -1,5 +1,5 @@
 # picograd
-Taken inspiration from Karpathy's "micrograd" ;) 
+Taken inspiration from Karpathy's "micrograd" and Hotz' "tinygrad" ;) 
 <img src="pics/mlp1_visualization.svg" alt="lines and boxes">
 
 A very simple autograd enigne for learning purposes only. The code for binary classification is insdie test/graph.py
