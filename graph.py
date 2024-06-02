@@ -44,7 +44,7 @@ y.backward()
 
 dot = draw_dot(y)
 dot.render('neuron_visualization')
-
+"""
 model = nn.MLP(3, [2, 1])
 inp = [Tensor(2.0), Tensor(3.4)]
 y = model(inp)
@@ -53,16 +53,13 @@ y.backward()
 dot = draw_dot(y)
 dot.render("mlp1_visualization")
 """
-
-
-"""
     Now, we will visualize the MLP for the following model: 
 
     1. 2 neurosn in the input layer
     2. 4 neurons in the first two hidden layers 
     3. 2 neurons in the last hidden layer
     4. 1 output layer and a relu at the end
-"""
+
 
 model = nn.MLP(2, [4, 4, 2, 1])
 
@@ -75,4 +72,4 @@ Y.backward()
 
 dot = draw_dot(Y)
 dot.render('binary_class')
-
+"""
